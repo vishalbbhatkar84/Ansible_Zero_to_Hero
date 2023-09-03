@@ -1,0 +1,675 @@
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ cat aws.ini 
+web ansible_host=sjsdjsjdnj ansible_port=22 ansible_user=ec2-user ansible_ssh_private_key_file=/home/vishalb/ansible/Ansible-vishal.pemvishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible % ansible web -i aws.ini -m ping
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER] [-K] [-i INVENTORY] [--list-hosts] [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [-k]
+               [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS] [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS] [--ask-vault-pass | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+               [-M MODULE_PATH] [--playbook-dir BASEDIR] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: unrecognized arguments: ansible web
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$  ansible web -i aws.ini -m ping
+web | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname sjsdjsjdnj: Temporary failure in name resolution",
+    "unreachable": true
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ vi aws.ini 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible % ansible web -i aws.ini -m ping
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER] [-K] [-i INVENTORY] [--list-hosts] [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [-k]
+               [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS] [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS] [--ask-vault-pass | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+               [-M MODULE_PATH] [--playbook-dir BASEDIR] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: unrecognized arguments: ansible web
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+web | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host ec2-65-2-167-23.ap-south-1.compute.amazonaws.com port 22: Connection timed out",
+    "unreachable": true
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ifconfig
+br-28a0c3b55d59: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.49.1  netmask 255.255.255.0  broadcast 192.168.49.255
+        ether 02:42:ab:fc:5d:4d  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ee:ed:c3:b7  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enx00e04c36556d: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.9  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::f7fb:da89:81e6:4756  prefixlen 64  scopeid 0x20<link>
+        ether 00:e0:4c:36:55:6d  txqueuelen 1000  (Ethernet)
+        RX packets 122  bytes 14520 (14.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 97  bytes 19205 (19.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 3019  bytes 335430 (335.4 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3019  bytes 335430 (335.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp2s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.29.6  netmask 255.255.255.0  broadcast 192.168.29.255
+        inet6 fe80::48d1:c979:efad:6535  prefixlen 64  scopeid 0x20<link>
+        inet6 2405:201:2e:bb18:3fa:d128:91fa:d43e  prefixlen 64  scopeid 0x0<global>
+        inet6 2405:201:2e:bb18:a4d3:157c:1de8:b153  prefixlen 64  scopeid 0x0<global>
+        ether 30:d1:6b:ef:ef:49  txqueuelen 1000  (Ethernet)
+        RX packets 25637  bytes 19630179 (19.6 MB)
+        RX errors 0  dropped 2  overruns 0  frame 0
+        TX packets 20956  bytes 7422047 (7.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+web | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host ec2-65-2-167-23.ap-south-1.compute.amazonaws.com port 22: Connection timed out",
+    "unreachable": true
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ssh: connect to host ec2-65-2-167-23.ap-south-1.compute.amazonaws.com port 22: Connection timed out
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ifconfig -a
+br-28a0c3b55d59: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.49.1  netmask 255.255.255.0  broadcast 192.168.49.255
+        ether 02:42:ab:fc:5d:4d  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ee:ed:c3:b7  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enx00e04c36556d: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.9  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::f7fb:da89:81e6:4756  prefixlen 64  scopeid 0x20<link>
+        ether 00:e0:4c:36:55:6d  txqueuelen 1000  (Ethernet)
+        RX packets 217  bytes 20867 (20.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 105  bytes 20749 (20.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 3322  bytes 376787 (376.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3322  bytes 376787 (376.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp2s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.29.6  netmask 255.255.255.0  broadcast 192.168.29.255
+        inet6 fe80::48d1:c979:efad:6535  prefixlen 64  scopeid 0x20<link>
+        inet6 2405:201:2e:bb18:3fa:d128:91fa:d43e  prefixlen 64  scopeid 0x0<global>
+        inet6 2405:201:2e:bb18:a4d3:157c:1de8:b153  prefixlen 64  scopeid 0x0<global>
+        ether 30:d1:6b:ef:ef:49  txqueuelen 1000  (Ethernet)
+        RX packets 28129  bytes 20281086 (20.2 MB)
+        RX errors 0  dropped 2  overruns 0  frame 0
+        TX packets 24890  bytes 10491044 (10.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ hostname -i
+127.0.1.1
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ hostname -I
+192.168.29.6 192.168.49.1 172.17.0.1 192.168.1.9 2405:201:2e:bb18:a4d3:157c:1de8:b153 2405:201:2e:bb18:3fa:d128:91fa:d43e 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ^C
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+^C
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+The authenticity of host 'ec2-65-2-167-23.ap-south-1.compute.amazonaws.com (65.2.167.23)' can't be established.
+ECDSA key fingerprint is SHA256:c2s3VRvwT+lxyL6PuLG8ocf/C43gdpyXoJWTextb/VU.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-65-2-167-23.ap-south-1.compute.amazonaws.com,65.2.167.23' (ECDSA) to the list of known hosts.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for '/home/vishalb/ansible/Ansible-vishal.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/vishalb/ansible/Ansible-vishal.pem": bad permissions
+ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ chmod 755 /home/vishalb/ansible/Ansible-vishal.pem
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0755 for '/home/vishalb/ansible/Ansible-vishal.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/vishalb/ansible/Ansible-vishal.pem": bad permissions
+ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ chmod 444 /home/vishalb/ansible/Ansible-vishal.pem
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0444 for '/home/vishalb/ansible/Ansible-vishal.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/vishalb/ansible/Ansible-vishal.pem": bad permissions
+ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ chmod 400 ~/.ssh/id_rsa
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0444 for '/home/vishalb/ansible/Ansible-vishal.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/vishalb/ansible/Ansible-vishal.pem": bad permissions
+ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ chmod 400 /home/vishalb/ansible/Ansible-vishal.pem
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-45-196 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-45-196 ~]$ ls -lte
+ls: invalid option -- 'e'
+Try 'ls --help' for more information.
+[ec2-user@ip-172-31-45-196 ~]$ ^C
+[ec2-user@ip-172-31-45-196 ~]$ exit
+logout
+Connection to ec2-65-2-167-23.ap-south-1.compute.amazonaws.com closed.
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ hostname -i
+127.0.1.1
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+web | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ifconfig
+br-28a0c3b55d59: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.49.1  netmask 255.255.255.0  broadcast 192.168.49.255
+        ether 02:42:ab:fc:5d:4d  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ee:ed:c3:b7  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enx00e04c36556d: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.9  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::f7fb:da89:81e6:4756  prefixlen 64  scopeid 0x20<link>
+        ether 00:e0:4c:36:55:6d  txqueuelen 1000  (Ethernet)
+        RX packets 207  bytes 20407 (20.4 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 97  bytes 20299 (20.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 4226  bytes 476865 (476.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4226  bytes 476865 (476.8 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp2s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.29.6  netmask 255.255.255.0  broadcast 192.168.29.255
+        inet6 fe80::48d1:c979:efad:6535  prefixlen 64  scopeid 0x20<link>
+        inet6 2405:201:2e:bb18:3fa:d128:91fa:d43e  prefixlen 64  scopeid 0x0<global>
+        inet6 2405:201:2e:bb18:a4d3:157c:1de8:b153  prefixlen 64  scopeid 0x0<global>
+        ether 30:d1:6b:ef:ef:49  txqueuelen 1000  (Ethernet)
+        RX packets 32356  bytes 22676350 (22.6 MB)
+        RX errors 0  dropped 2  overruns 0  frame 0
+        TX packets 28399  bytes 11625847 (11.6 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+web | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+web | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Sun Sep  3 12:34:16 2023 from 49.36.123.37
+[ec2-user@ip-172-31-45-196 ~]$ exit
+logout
+Connection to ec2-65-2-167-23.ap-south-1.compute.amazonaws.com closed.
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+web | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+web | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Sun Sep  3 12:34:29 2023 from 49.36.123.37
+[ec2-user@ip-172-31-45-196 ~]$ ifconfig -a
+enX0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.31.45.196  netmask 255.255.240.0  broadcast 172.31.47.255
+        inet6 fe80::bb:93ff:feb9:9730  prefixlen 64  scopeid 0x20<link>
+        ether 02:bb:93:b9:97:30  txqueuelen 1000  (Ethernet)
+        RX packets 1740  bytes 596371 (582.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1715  bytes 195964 (191.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 12  bytes 1020 (1020.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 12  bytes 1020 (1020.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[ec2-user@ip-172-31-45-196 ~]$ exit
+logout
+Connection to ec2-65-2-167-23.ap-south-1.compute.amazonaws.com closed.
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+web | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible web -i aws.ini -m ping
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+web | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ cat aws.ini 
+web ansible_host=ec2-65-2-167-23.ap-south-1.compute.amazonaws.com ansible_port=22 ansible_user=ec2-user ansible_ssh_private_key_file=/home/vishalb/ansible/Ansible-vishal.pem
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ cat aws.ini 
+web ansible_host=ec2-65-2-167-23.ap-south-1.compute.amazonaws.com ansible_port=22 ansible_user=ec2-user ansible_ssh_private_key_file=/home/vishalb/ansible/Ansible-vishal.pem
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible-playbook -i aws.ini playbook.yaml 
+ERROR! Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to be in '/home/vishalb/ansible/Ansible-demo/Inventory-day1/playbook.yaml': line 4, column 8, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  become:yes
+  tasks:
+       ^ here
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ vi playbook.yaml 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ dos2unix playbook.yaml 
+dos2unix: converting file playbook.yaml to Unix format...
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible-playbook -i aws.ini playbook.yaml 
+ERROR! Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to be in '/home/vishalb/ansible/Ansible-demo/Inventory-day1/playbook.yaml': line 4, column 8, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  become:yes
+  tasks:
+       ^ here
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ vi playbook.yaml 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible-playbook -i aws.ini playbook.yaml 
+ERROR! Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to be in '/home/vishalb/ansible/Ansible-demo/Inventory-day1/playbook.yaml': line 2, column 14, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+-hosts:web
+  remote_user: root
+             ^ here
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ vi playbook.yaml 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ vi playbook.yaml 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible-playbook -i aws.ini playbook.yaml 
+
+PLAY [web] ************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************************************
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+ok: [web]
+
+TASK [Install apache] *************************************************************************************************************************************************************************************
+fatal: [web]: FAILED! => {"changed": false, "msg": "The Python 2 yum module is needed for this module. If you require Python 3 support use the `dnf` Ansible module instead."}
+
+PLAY RECAP ************************************************************************************************************************************************************************************************
+web                        : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ cat playbook.yaml 
+- hosts: web
+  remote_user: root
+  become: yes
+  tasks:
+  - name: Install apache
+    yum:
+      name: httpd
+      state: installed
+  - name: Remove apache
+    yum:
+      name: httpd
+      state: removed
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ pwd
+/home/vishalb/ansible/Ansible-demo/Inventory-day1
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ cd ..
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ ls -ltr
+total 4
+drwxr-xr-x 2 vishalb vishalb 4096 Sep  3 18:37 Inventory-day1
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ pwd
+/home/vishalb/ansible/Ansible-demo
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ ls -ltr
+total 4
+drwxr-xr-x 2 vishalb vishalb 4096 Sep  3 18:37 Inventory-day1
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git init
+Initialized empty Git repository in /home/vishalb/ansible/Ansible-demo/.git/
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git remote add https://github.com/vishalbbhatkar84/Ansible_Zero_to_Hero.git
+usage: git remote add [<options>] <name> <url>
+
+    -f, --fetch           fetch the remote branches
+    --tags                import all tags and associated objects when fetching
+                          or do not fetch any tag at all (--no-tags)
+    -t, --track <branch>  branch(es) to track
+    -m, --master <branch>
+                          master branch
+    --mirror[=(push|fetch)]
+                          set up remote as a mirror to push to or fetch from
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git -v remote add https://github.com/vishalbbhatkar84/Ansible_Zero_to_Hero.git
+unknown option: -v
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git -v remote add https://github.com/vishal^Chatkar84/Ansible_Zero_to_Hero.git
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ history | grep remote
+  258  git remote add origin git@github.com:vishalbbhatkar84/iam-vishalbhatkar.git
+  259  git remote -v
+  263  git remote -v
+  264  git remote remove origin 
+  265  git remote add origin git@github.com:vishalbbhatkar84/iam-vishalbhatkar.git
+  266  git remote -v
+  273  git remote
+  274  git remote -v
+  288  git remote add origin git@github.com:vishalbbhatkar84/Linux_Zero_To_Hero.git
+  290  git remote add origin git@github.com:vishalbbhatkar84/Linux_Zero_To_Hero.git
+  300  git remote -v
+  529  git remote -v
+  530  history | grep -i remote
+  531  git remote add origin git@github.com:vishalbbhatkar84/Kubernetes_Zero_To_Hero.git
+ 1050  git remote -v
+ 1246  git remote add https://github.com/vishalbbhatkar84/Ansible_Zero_to_Hero.git
+ 1247  git -v remote add https://github.com/vishalbbhatkar84/Ansible_Zero_to_Hero.git
+ 1248  history | grep remote
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git remote add origin git@github.com:vishalbbhatkar84/Ansible_Zero_to_Hero.git
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Inventory-day1/
+
+nothing added to commit but untracked files present (use "git add" to track)
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git add Inventory-day1/^C
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ ls -ltr Inventory-day1/*
+-rw-r--r-- 1 vishalb vishalb 333 Sep  3 11:10 Inventory-day1/hosts.ini
+-rw-r--r-- 1 vishalb vishalb 190 Sep  3 12:01 Inventory-day1/hosts.yaml
+-rw-r--r-- 1 vishalb vishalb 174 Sep  3 17:52 Inventory-day1/aws.ini
+-rw-r--r-- 1 vishalb vishalb 203 Sep  3 18:37 Inventory-day1/playbook.yaml
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git remote add origin git@github.com:vishalbbhatkar84/Ansible_Zero_to_Hero.git^C
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git add Inventory-day1/*
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   Inventory-day1/aws.ini
+	new file:   Inventory-day1/hosts.ini
+	new file:   Inventory-day1/hosts.yaml
+	new file:   Inventory-day1/playbook.yaml
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   Inventory-day1/aws.ini
+	new file:   Inventory-day1/hosts.ini
+	new file:   Inventory-day1/hosts.yaml
+	new file:   Inventory-day1/playbook.yaml
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ 
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   Inventory-day1/aws.ini
+	new file:   Inventory-day1/hosts.ini
+	new file:   Inventory-day1/hosts.yaml
+	new file:   Inventory-day1/playbook.yaml
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ history | grep master
+  261  git push -u origin master
+  267  git push -u origin master
+  301  git push origin master
+  313  git checkout master
+  314  git push origin master
+  316  git branch -m master main
+  541  git branch -m master main
+ 1052  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+ 1254  history | grep master
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git branch -m master main
+error: refname refs/heads/master not found
+fatal: Branch rename failed
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ pwd
+/home/vishalb/ansible/Ansible-demo
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   Inventory-day1/aws.ini
+	new file:   Inventory-day1/hosts.ini
+	new file:   Inventory-day1/hosts.yaml
+	new file:   Inventory-day1/playbook.yaml
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git commit -m "initial commit"
+[master (root-commit) 2ca5f18] initial commit
+ 4 files changed, 42 insertions(+)
+ create mode 100644 Inventory-day1/aws.ini
+ create mode 100644 Inventory-day1/hosts.ini
+ create mode 100644 Inventory-day1/hosts.yaml
+ create mode 100644 Inventory-day1/playbook.yaml
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git push -f origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'git@github.com:vishalbbhatkar84/Ansible_Zero_to_Hero.git'
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git push -u origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'git@github.com:vishalbbhatkar84/Ansible_Zero_to_Hero.git'
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git push -u origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'git@github.com:vishalbbhatkar84/Ansible_Zero_to_Hero.git'
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git push -f origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'git@github.com:vishalbbhatkar84/Ansible_Zero_to_Hero.git'
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git status
+On branch master
+nothing to commit, working tree clean
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git branch
+* master
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git branch -m master main
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git branch
+* main
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ git push -f origin main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 843 bytes | 281.00 KiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0)
+To github.com:vishalbbhatkar84/Ansible_Zero_to_Hero.git
+ + f896a91...2ca5f18 main -> main (forced update)
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ ansible-playbook -i aws.ini playbook.yaml 
+ERROR! the playbook: playbook.yaml could not be found
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ ls -ltr
+total 4
+drwxr-xr-x 2 vishalb vishalb 4096 Sep  3 18:37 Inventory-day1
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo$ cd Inventory-day1/
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ ansible-playbook -i aws.ini playbook.yaml 
+
+PLAY [web] ************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************************************
+[WARNING]: Platform linux on host web is using the discovered Python interpreter at /usr/bin/python3, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+ok: [web]
+
+TASK [Install apache] *************************************************************************************************************************************************************************************
+fatal: [web]: FAILED! => {"changed": false, "msg": "The Python 2 yum module is needed for this module. If you require Python 3 support use the `dnf` Ansible module instead."}
+
+PLAY RECAP ************************************************************************************************************************************************************************************************
+web                        : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ history | grep -i ssh
+  351  vi generate_ssh_keys.txt
+  352  cat generate_ssh_keys.txt 
+  354  cat generate_ssh_keys.txt 
+  355  vi generate_ssh_keys.txt
+  356  git add generate_ssh_keys.txt 
+  357  git commit -m "adding steps for generating ssh"
+  359  vi generate_ssh_keys.txt
+  361  git add generate_ssh_keys.txt 
+  362  git commit -m "adding steps for generating ssh"
+  364  cat /home/vishalb/.ssh/id_rsa
+  429  ssh docker@192.168.49.2
+  430  minikube ssh docker@192.168.49.2
+  431  minikuber ssh -v 7
+  432  minikube ssh -v 7
+  598  minikube ssh -v 7
+ 1209  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1213  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1215  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1217  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1218  chmod 400 ~/.ssh/id_rsa
+ 1219  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1221  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1226  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1228  ssh ec2-user@ec2-65-2-167-23.ap-south-1.compute.amazonaws.com -i /home/vishalb/ansible/Ansible-vishal.pem 
+ 1272  history | grep -i ssh
+vishalb@vishalb-Lenovo-ideapad-330S-15IKB-D:~/ansible/Ansible-demo/Inventory-day1$ 

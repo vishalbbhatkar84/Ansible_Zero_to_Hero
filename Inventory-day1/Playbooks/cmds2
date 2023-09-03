@@ -1,0 +1,52 @@
+sudo yum install make automake gcc gcc-c++ kernel-devel git-core -y 
+
+# install python 2.7 and change default python symlink 
+sudo yum install python27-devel -y 
+sudo rm /usr/bin/python
+sudo ln -s /usr/bin/python2.7 /usr/bin/python 
+
+# yum still needs 2.6, so write it in and backup script 
+sudo cp /usr/bin/yum /usr/bin/_yum_before_27 
+sudo sed -i s/python/python2.6/g /usr/bin/yum 
+sudo sed -i s/python2.6/python2.6/g /usr/bin/yum 
+
+# should display now 2.7.5 or later: 
+python -V 
+
+# now install pip for 2.7 
+sudo curl -o /tmp/ez_setup.py https://bootstrap.pypa.io/ez_setup.py
+
+sudo /usr/bin/python27 /tmp/ez_setup.py 
+sudo /usr/bin/easy_install-2.7 pip 
+sudo pip install virtualenv
+
+# should display current versions:
+pip -V && virtualenv --version
+
+
+wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
+   tar xfz Python-2.7.13.tgz
+
+
+   if [ ! -d "python_update" ]; then
+   mkdir python_update
+   cd python_update
+   wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
+   tar xfz Python-2.7.13.tgz
+   cd Python-2.7.13/
+else
+  cd python_update
+  cd Python-2.7.13/
+fi
+./configure --prefix /usr/local/lib/python2.7.13 --enable-ipv6
+make && make install
+
+alternatives --install /usr/bin/python python /usr/local/lib/python2.7.13/bin/python 27130
+update-alternatives --refresh python
+update-alternatives --auto python
+
+curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | sudo python
+ln -sf /usr/local/lib/python2.7.13/bin/pip /usr/bin/pip
+pip install -U virtualenv
+ln -sf /usr/local/lib/python2.7.13/bin/virtualenv /usr/bin/virtualenv
+echo "DONE!"

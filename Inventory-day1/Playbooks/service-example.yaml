@@ -6,7 +6,7 @@
     yum:
       name: httpd
       state: installed
-  - name: Remove apache
+  - name: Restart apache
     yum:
-      name: httpd
-      state: removed
+      name: service
+      state: restart
